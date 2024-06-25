@@ -2,7 +2,7 @@
 
 namespace Ikechukwukalu\Requirepin\Services;
 
-use App\Models\User;
+use App\User;
 use Ikechukwukalu\Requirepin\Models\TestUser;
 use Ikechukwukalu\Requirepin\Models\OldPin;
 use Ikechukwukalu\Requirepin\Models\RequirePin;
