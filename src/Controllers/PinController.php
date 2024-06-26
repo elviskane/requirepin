@@ -22,7 +22,9 @@ class PinController extends BaseTemplateController
     use Helpers;
 
     public function __construct(private PinService $pinService)
-    {}
+    {
+         parent::__construct();
+    }
 
     /**
      * Change Pin.
