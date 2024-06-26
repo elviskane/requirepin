@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class PinController extends BaseController
+use App\Http\Controllers\BaseTemplateController;
+class PinController extends BaseTemplateController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use Helpers;
