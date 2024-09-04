@@ -85,9 +85,9 @@ class PinController extends BaseTemplateController
      *
      * @return \Illuminate\View\View
      */
-    public function changePinView(): View
+    public function changePinView($id): View
     {
-        return view('requirepin::pin.changepin');
+        return view('requirepin::pin.changepin',compact('id'));
     }
 
     /**
