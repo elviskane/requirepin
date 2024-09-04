@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class DisallowOldPin implements Rule
 {
@@ -19,18 +20,19 @@ class DisallowOldPin implements Rule
     private int|bool $checkAll;
     private int $number;
     private $user;
+    private $user_id;
 
-    public function __construct($checkAll = true, $number = 4)
+   public function __construct($checkAll = true, $number = 4,$id)
     {
         //
         $this->checkAll = $checkAll;
         $this->number = $number;
-
+        $this->user_id = $id;
         if (is_int($this->checkAll) && !empty($this->checkAll)) {
             $this->number = $checkAll;
         }
 
-        $this->user = Auth::guard(config('requirepin.auth_guard', 'web'))->user();
+        $this->user =User::find($this->user_id);;
     }
 
     /**
