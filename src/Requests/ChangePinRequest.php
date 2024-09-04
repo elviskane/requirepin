@@ -24,7 +24,7 @@ class ChangePinRequest extends FormRequest
              * In order to do that we set it to receive a boolean
              * value TRUE as a first parameter
              */
-            'current_pin' => ['required', 'string', new CurrentPin(true)],
+            'current_pin' => ['required', 'string', new CurrentPin(true, $this->request->get('id'))],
             'pin' => [
                         'required', 'string',
                         'max:' . config('requirepin.max', 4),
@@ -32,7 +32,8 @@ class ChangePinRequest extends FormRequest
                         'confirmed',
                         new DisallowOldPin(
                             config('requirepin.check_all', true),
-                            config('requirepin.number', 4)
+                            config('requirepin.number', 4),
+                            $this->request->get('id')
                         )
                     ],
         ];
