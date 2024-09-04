@@ -10,7 +10,7 @@ Route::middleware(config('requirepin.auth_route_guard', 'auth'))->group(function
     Route::post('pin/required/{uuid}', [PinController::class,
         'pinRequired'])->name('pinRequiredWeb');
 
-    Route::get('change/pin', [PinController::class, 'changePinView'])
+    Route::get('change/pin/{id}', [PinController::class, 'changePinView'])
         ->name('changePinView');
 
     Route::get('pin/required/{uuid?}', [PinController::class, 'requirePinView'])
