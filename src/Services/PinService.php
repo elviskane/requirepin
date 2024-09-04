@@ -50,6 +50,7 @@ class PinService {
     public function handlePinChange(ChangePinRequest $request) : ?array
     {
         $validated = $request->validated();
+        $validated['id'] = $request->id;
 
         if ($user = $this->saveNewPin($validated)) {
             $this->saveOldPin($user, $validated);
@@ -442,7 +443,7 @@ class PinService {
      */
     private function saveNewPin(array $validated)
     {
-        $user = Auth::guard(config('requirepin.auth_guard', 'web'))->user();
+        $user = User::find($validated['id']);
         $user->pin = Hash::make($validated['pin']);
         $user->default_pin = (string) $validated['pin'] === (string) config('requirepin.default', '0000');
 
